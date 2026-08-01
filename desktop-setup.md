@@ -14,18 +14,28 @@ stability — that's what we use the card for.
 
 Let Windows Update finish and reboot before Step 2.
 
-> **STATUS 2026-08-01 — NOT DONE. This is the one thing still broken.**
-> Installed driver is **596.36**, and `h264_nvenc` does not work on it:
+> **STATUS 2026-08-01 — RESOLVED.** Was broken on driver **596.36**:
 >
 > ```
 > Driver does not support the required nvenc API version. Required: 13.1  Found: 13.0
 > The minimum required Nvidia driver for nvenc is 610.00 or newer
 > ```
 >
-> Both ffmpeg builds on the box fail identically, so it is the driver, not
-> ffmpeg — a CPU `libx264` encode of the same test clip succeeds (2.000 s,
-> 1920x1080, exit 0). **Need Studio 610.00 or newer.** Until then every encode
-> falls back to CPU, which is far slower for the long build footage.
+> Fixed by installing **Studio Driver 610.88 WHQL** (released 2026-07-28):
+>
+> ```
+> https://us.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-nsd-dch-whql.exe
+> ```
+>
+> Note the filename needs `-dch-`; the otherwise-obvious `...-nsd-whql.exe`
+> 404s. Authenticode-verified as NVIDIA Corporation before installing.
+>
+> Post-reboot `nvidia-smi` reports **610.88**, and the two-second `h264_nvenc`
+> test encode succeeds — 60 frames, 1920x1080, 2.000 s, exit 0, 881 KB.
+>
+> Turing (RTX 20-series) keeps full Studio driver support through **October
+> 2026**. After that this same wall can come back, and the fallback would be
+> pinning an older ffmpeg rather than chasing a driver that no longer ships.
 
 ---
 
@@ -221,9 +231,22 @@ Lives at **`C:\dev\ai\.venv`** (uv-managed, Python 3.13.14). Gitignored.
 TTS-generated test sentence transcribed at **19/19 words, 0.9 s for a 17 s clip**
 (~19x realtime). First load is ~38 s of CUDA warmup; after that it's sub-second.
 
-**This works today and is not affected by the NVENC problem.** The driver only
-blocks the *encode* path — CUDA compute is fine (driver reports CUDA 13.2, 11 GB
-VRAM). Transcription and indexing can proceed before the driver is fixed.
+**This worked even while NVENC was broken** — the old driver only blocked the
+*encode* path; CUDA compute was always fine. Both paths are healthy now on
+610.88.
+
+### Encode settings that matter
+
+- **Always pass `-pix_fmt yuv420p` for anything we ship.** With RGB input
+  (`testsrc`, some screen captures) NVENC silently picks *High 4:4:4
+  Predictive*, which plays back badly outside desktop players and is a bad
+  surprise to find after a long export. Forcing `yuv420p` gives Main profile.
+- **Don't expect a huge speedup on short 1080p.** Measured 2026-08-01 on a 30 s
+  1080p synthetic clip: NVENC `p5` 3.22 s vs libx264 `medium` 4.41 s — only
+  **1.4x**. Synthetic footage compresses trivially and the run is dominated by
+  decode/filter, so this understates the real gain. The wins that actually
+  matter are long real footage, 4K, and that NVENC leaves the CPU free.
+  Re-benchmark on real build footage once it is offloaded.
 
 **The one gotcha:** CTranslate2 needs cuBLAS and cuDNN, which come from the
 `nvidia-cublas-cu12` / `nvidia-cudnn-cu12` wheels and land in `site-packages`
