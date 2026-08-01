@@ -101,18 +101,50 @@ posts. One viral video is noise. Anything below that lives in
 | `/content-plan` | Produces the next 2 weeks of posts from the playbook + build status |
 | `/draft` | Drafts a specific post (hook, script, caption, tags) |
 
+## Two machines, one repo
+
+*Set up 2026-08-01. Read this before assuming anything about the environment.*
+
+This project runs on **two computers**, and each `claude` session sees only one
+of them. There is no live link between the sessions — **the git repo is the only
+thing they share.**
+
+| | Laptop | Desktop |
+|---|---|---|
+| Spec | Latitude 3540, i3-1215U, 8 GB, Intel UHD | 32 GB, **RTX 2080 Ti** |
+| Role | **The brain** — planning, scripts, metadata, cut lists | **The render farm** — ffmpeg, Whisper, exports |
+| Holds the footage | No | **Yes** |
+
+- **Never propose a long encode on the laptop.** Use `h264_nvenc` on the desktop.
+- Remote: `https://github.com/connoragrace11706/project-mc.git`
+- **Commit and push after any meaningful change**, so the other machine can pull.
+  Work that lives on one box only is work the other session will contradict.
+- `git pull` at the start of a session before editing anything.
+
+**What is deliberately NOT in the repo**, and must be recreated per machine:
+
+- `.env` — API keys, hand-typed once on each box. This is why the repo is safe.
+- Footage — `.gitignore` blocks `.mp4/.mov/.CR2/.ARW`. **Git will never move
+  video.** Off-site backup is a separate job (rclone → Backblaze B2).
+- `settings.local.json` — the two machines are configured differently on purpose.
+
 ## Current state
 
-*Last updated 2026-07-31.*
+*Last updated 2026-08-01.*
 
-- **Setup phase.** All four platforms are in scope. Instagram is already a
-  Creator account, so its API is available.
+- **Setup phase, nearly done.** All four platforms in scope. Instagram is already
+  a Creator account, so its API is available.
 - **Data path: free DIY.** YouTube + Instagram via free APIs; TikTok and X by
   manual CSV. No paid connectors.
-- **Blocked on credentials:** `YOUTUBE_API_KEY`, `IG_ACCESS_TOKEN`, `IG_USER_ID`
-  in `.env`, plus handles for all four accounts. See `SETUP.md`.
+- **YouTube key: done** — in `.env` on the laptop, still to be typed on the
+  desktop. **Still blocked:** `IG_ACCESS_TOKEN`, `IG_USER_ID`. See `SETUP.md`.
+- **First snapshot landed 2026-07-31** — `data/snapshots/2026-07-31/`, TikTok
+  export plus YouTube. Baseline and open questions are in
+  `playbook/hypotheses.md`. Nothing graduates to `what-works.md` until a pattern
+  holds across three posts.
 - **Time budget: 20–40 hrs/week** on filming and editing, on top of a full-time
   job. That supports an aggressive cadence, but it is a lot — plans must define
   a protected floor that survives a bad week, not just a ceiling.
-- No snapshots yet. Nothing in the playbook is evidence-based until the first
-  two pulls land.
+- **The critical path is footage, not setup.** SD cards and three phones still
+  need offloading to the desktop, then backing up off-site. The Aug 7 ship date
+  rides on it — see `calendar/2026-08-07-origin-story.md`.
