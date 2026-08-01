@@ -110,6 +110,79 @@ Say the word and I'll kick off the OAuth flow for either one.
 
 ---
 
+## 6. Backblaze B2 — off-site backup. **The one with a real deadline.**
+
+Everything above is about measuring the channel. This one is about not losing
+the thing the channel is made of. Years of build footage currently exist on SD
+cards and three phones, in **one** place, with **zero** backups. Every other
+item on this list is reversible; that one isn't.
+
+`rclone` 1.75.0 is installed and `ingest\Backup-Footage.ps1` is written and
+ready. The parts I cannot do for you are the account and the key — both need a
+browser and a card on file.
+
+### What you do (~10 minutes)
+
+1. <https://www.backblaze.com> → sign up for **B2 Cloud Storage**. Needs a card;
+   first 10 GB are free, then roughly **$6/TB/month**.
+2. **Buckets → Create a Bucket.**
+   - Name: bucket names are globally unique across all of B2, so `footage` is
+     long gone. Use something like `projectmc-footage-archive`.
+   - Files in bucket: **Private**.
+   - Default encryption: **Enable** (free, server-side).
+   - Object Lock: leave off unless you want files to become genuinely
+     undeletable for a fixed period.
+3. **Lifecycle Settings → Keep all versions of the file.** This is the setting
+   that saves you from a bad delete or a ransomware run. Do not set it to keep
+   only the last version.
+4. **Application Keys → Add a New Application Key.**
+   - Allow access to: **that one bucket only**, not "All".
+   - Type: **Read and Write**.
+   - Copy both values. The application key is displayed **exactly once**.
+5. Put all three into `.env`:
+
+   ```
+   B2_ACCOUNT_ID=<the keyID, not your account number>
+   B2_APPLICATION_KEY=<shown once>
+   B2_BUCKET=projectmc-footage-archive
+   ```
+
+   `.env` is gitignored. Do not paste these into chat — I don't need to see
+   them, the script reads them itself.
+
+### Then tell me, and I'll run it
+
+```powershell
+.\ingest\Backup-Footage.ps1 -FootageRoot C:\footage\raw -DryRun   # always first
+.\ingest\Backup-Footage.ps1 -FootageRoot C:\footage\raw
+.\ingest\Backup-Footage.ps1 -FootageRoot C:\footage\raw -Verify   # prove it landed
+```
+
+### Two things worth understanding about how this is built
+
+**It uses `rclone copy`, never `rclone sync`.** `sync` makes the remote match
+the local copy, which means it deletes remote files whose local original has
+gone. That is precisely the failure we are buying insurance against: one bad
+delete or one drive that drops offline mid-scan, and `sync` dutifully destroys
+the second copy too. `copy` only ever adds. It leaves orphans behind when you
+rename things, and that is a cheap price.
+
+**Credentials never touch a command line.** The script reads `.env` and hands
+rclone its config through `RCLONE_CONFIG_*` environment variables, so the key
+stays out of shell history, out of the rclone log, and out of `rclone.conf`.
+
+### Not done yet, and it matters
+
+- **Free space:** this machine has **one** drive with **854.8 GB free**, not the
+  ~2 TB `ROADMAP.md` assumed. Nobody has measured the archive yet. If the cards
+  and phones total more than ~850 GB, the offload fails partway and the backup
+  never gets a complete source. **Measure before copying** — add up the used
+  space on every card and phone first.
+- Restores are untested. A backup you have never restored from is a hypothesis.
+  Once the first upload lands, pull one clip back down and play it.
+
+---
+
 ## What I need from you regardless of the above
 
 These aren't blocked on any API — fill in `brand/profile.md`:

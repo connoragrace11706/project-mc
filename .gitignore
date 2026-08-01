@@ -9,6 +9,9 @@ api key/
 **/settings.local.json
 data/snapshots/**/raw/
 footage/
+
+# rclone transfer logs - machine-specific, noisy, and they name local paths.
+library/backup-logs/
 *.mp4
 *.mov
 *.CR2
