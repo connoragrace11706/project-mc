@@ -15,3 +15,9 @@ footage/
 *.ARW
 Thumbs.db
 desktop.ini
+
+# Python env for local transcription (faster-whisper on CUDA). Multi-GB of
+# CUDA libs - belongs on disk, never in the repo.
+.venv/
+__pycache__/
+*.pyc

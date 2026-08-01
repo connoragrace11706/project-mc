@@ -14,6 +14,19 @@ stability — that's what we use the card for.
 
 Let Windows Update finish and reboot before Step 2.
 
+> **STATUS 2026-08-01 — NOT DONE. This is the one thing still broken.**
+> Installed driver is **596.36**, and `h264_nvenc` does not work on it:
+>
+> ```
+> Driver does not support the required nvenc API version. Required: 13.1  Found: 13.0
+> The minimum required Nvidia driver for nvenc is 610.00 or newer
+> ```
+>
+> Both ffmpeg builds on the box fail identically, so it is the driver, not
+> ffmpeg — a CPU `libx264` encode of the same test clip succeeds (2.000 s,
+> 1920x1080, exit 0). **Need Studio 610.00 or newer.** Until then every encode
+> falls back to CPU, which is far slower for the long build footage.
+
 ---
 
 ## 2 — One paste. PowerShell **as Administrator**
@@ -31,6 +44,25 @@ winget install --id OpenJS.NodeJS.LTS  --exact --silent --disable-interactivity 
 **Then close the window.** Installers change PATH; an open window keeps the old
 one. That's the cause of most "command not found" confusion on Windows.
 
+> **STATUS 2026-08-01 — done, but only on the second attempt.**
+> The first run of this paste silently did not take: `winget list` later showed
+> **no matching package** for `Gyan.FFmpeg`, `yt-dlp.yt-dlp`, or
+> `Python.Python.3.13`, and none of the three were on PATH. Git and Node were
+> fine (they came from their own MSIs). Re-run installed all three.
+>
+> **Verify it actually took** rather than assuming — in a *new* window:
+>
+> ```powershell
+> ffmpeg -version; yt-dlp --version; python --version; git --version; node --version
+> ```
+>
+> Confirmed working 2026-08-01: ffmpeg **8.1.2**, yt-dlp **2026.07.04**,
+> Python **3.13.14**, git **2.55.0**, node **v24.18.1**.
+>
+> Note: `yt-dlp` pulls in two dependencies of its own — **Deno** and a **second
+> ffmpeg build**. Harmless, but it means two ffmpeg binaries are on PATH. Gyan's
+> build wins the ordering, which is the one we want.
+
 ---
 
 ## 3 — One paste. PowerShell, **normal** this time
@@ -45,13 +77,27 @@ Close the window again.
 
 ## 4 — Copy the folder over, then start me
 
-Copy `C:\Users\cgrace8504\Desktop\AI\` from the laptop to the desktop by **USB**.
-Not cloud sync, not email — the folder contains `.env` with your YouTube key.
+**Done 2026-08-01, in two stages.** Copied from
+`C:\Users\cgrace8504\Desktop\AI\` on the laptop by USB, verified byte-identical
+(SHA256, 79/79 files).
+
+It landed in **OneDrive** first, which was wrong — the folder contains `.env`
+with your YouTube key, and cloud sync also locks files mid-write.
+
+An earlier version of this doc claimed the folder had been moved to `C:\dev\ai`.
+**It had not.** `C:\dev\ai` did not exist; the repo was still running out of
+`C:\Users\conno\OneDrive\Desktop\ai`, key and all. Moved for real on 2026-08-01:
+234/234 files SHA256-verified byte-identical at `C:\dev\ai`, `git fsck` clean,
+HEAD unchanged at `5883aab`, working tree clean, `.env` and `api key/` still
+correctly gitignored.
+
+**The repo lives at `C:\dev\ai`. Never on OneDrive.** If a future session opens
+somewhere under `OneDrive\`, that is the bug — stop and move it.
 
 Then open PowerShell and:
 
 ```powershell
-cd C:\Users\cgrace8504\Desktop\AI
+cd C:\dev\ai
 claude
 ```
 
@@ -66,6 +112,34 @@ Paste this as your first message:
 **That's you done.** I check the five tools installed, confirm NVENC is real on
 this card, arm the publish gate, run all four hook tests, and report back.
 
+### The four hook tests
+
+These used to be referred to as "all four hook tests" without ever being written
+down. They are two hooks, each of which has to **block the bad case and allow the
+good one** — a hook that blocks everything is as broken as one that blocks
+nothing.
+
+| # | Hook | Case | Expected |
+|---|---|---|---|
+| 1 | `publish-gate.js` | publish command targeting `publisher/queue/` | **deny** |
+| 2 | `publish-gate.js` | publish command targeting `publisher/approved/` | allow |
+| 3 | `secret-scan.js` | API key written into a tracked file | **deny** |
+| 4 | `secret-scan.js` | same key written into `.env` | allow |
+
+Feed a `PreToolUse` payload straight into the hook on stdin — that tests the
+script without needing to provoke a real tool call:
+
+```powershell
+'{"tool_name":"Write","tool_input":{"file_path":".env","content":"X=1"}}' | node .claude\hooks\secret-scan.js
+```
+
+Deny prints a JSON `permissionDecision` block; allow prints nothing. Both hooks
+exit 0 either way, so **check the output, not the exit code.**
+
+**Status 2026-08-01: 4/4 pass.** The publish gate also blocked a real tool call
+during testing — the test harness itself named `queue`, and the hook killed it
+before it ran. It is genuinely armed, not just correct in isolation.
+
 ---
 
 ## If something looks wrong
@@ -73,6 +147,20 @@ this card, arm the publish gate, run all four hook tests, and report back.
 **`python` opens the Microsoft Store instead of printing a version** — that's the
 Store stub, same trap the laptop had. Settings → Apps → Advanced app settings →
 App execution aliases → turn **off** `python.exe` and `python3.exe`.
+
+After the Step 2 re-run the real interpreter sits at
+`%LOCALAPPDATA%\Programs\Python\Python313\`, which is **ahead of** `WindowsApps\`
+in PATH, so a new shell should get the real one. If it doesn't, the aliases above
+are why. There is also a `uv`-managed 3.13.14 (`uv run python`) that bypasses
+PATH entirely and is unaffected by the stub.
+
+**`ffmpeg -version` works but NVENC fails** — that's the driver, not ffmpeg. See
+the Step 1 status box. Confirm with a two-second encode rather than trusting
+`ffmpeg -encoders`; the encoder is listed even when the driver can't run it:
+
+```powershell
+ffmpeg -f lavfi -i testsrc=size=1920x1080:rate=30:duration=2 -c:v h264_nvenc -b:v 5M test.mp4
+```
 
 **`claude` isn't recognised after Step 3** — you're in the old window. Open a new
 one. If it still fails, fallback: `npm install -g @anthropic-ai/claude-code`
@@ -85,10 +173,52 @@ Anything else: tell me what it said and I'll sort it.
 
 ---
 
+## Pipeline tooling — added 2026-08-01
+
+Beyond the five from Step 2:
+
+| Tool | Version | For |
+|---|---|---|
+| rclone | 1.75.0 | Off-site backup to Backblaze B2 |
+| ExifTool | 13.59 | Real shoot dates for `/index-footage` |
+| faster-whisper | 1.2.1 | Local transcription, GPU |
+| CTranslate2 | 4.8.1 | Whisper inference engine |
+
+Also upgraded: .NET Runtime 8.0.21 → 8.0.29, VC++ Redistributable x64/x86
+14.42 → 14.51. `winget upgrade` is now clean.
+
+### Transcription environment
+
+Lives at **`C:\dev\ai\.venv`** (uv-managed, Python 3.13.14). Gitignored.
+
+**Verified working on GPU 2026-08-01** — `large-v3`, CUDA float16, a
+TTS-generated test sentence transcribed at **19/19 words, 0.9 s for a 17 s clip**
+(~19x realtime). First load is ~38 s of CUDA warmup; after that it's sub-second.
+
+**This works today and is not affected by the NVENC problem.** The driver only
+blocks the *encode* path — CUDA compute is fine (driver reports CUDA 13.2, 11 GB
+VRAM). Transcription and indexing can proceed before the driver is fixed.
+
+**The one gotcha:** CTranslate2 needs cuBLAS and cuDNN, which come from the
+`nvidia-cublas-cu12` / `nvidia-cudnn-cu12` wheels and land in `site-packages`
+where Windows does not look for DLLs. Any script must register them *before*
+importing `faster_whisper`, or it fails with an opaque library error:
+
+```python
+import os, glob
+for b in sorted(glob.glob(r"C:\dev\ai\.venv\Lib\site-packages\nvidia\*\bin")):
+    os.add_dll_directory(b)
+    os.environ["PATH"] = b + os.pathsep + os.environ["PATH"]
+from faster_whisper import WhisperModel   # only after the loop
+```
+
+---
+
 ## Then the part that actually has a deadline
 
 - [ ] **Offload every SD card and all three phones** onto the desktop
-- [ ] **Back it up off-site** — I'll set up rclone to Backblaze B2, ~$6/TB/month
+- [ ] **Back it up off-site** — rclone is installed; still needs a B2 account and
+      `rclone config` (interactive auth — you have to do that part), ~$6/TB/month
 
 Sunday's archive dig can't start without the footage, and **Aug 7** rides on
 Sunday. Right now years of this build sit in exactly one place and in zero
