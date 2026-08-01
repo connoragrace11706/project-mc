@@ -127,18 +127,44 @@ nothing.
 | 4 | `secret-scan.js` | same key written into `.env` | allow |
 
 Feed a `PreToolUse` payload straight into the hook on stdin — that tests the
-script without needing to provoke a real tool call:
+script without needing to provoke a real tool call.
 
-```powershell
-'{"tool_name":"Write","tool_input":{"file_path":".env","content":"X=1"}}' | node .claude\hooks\secret-scan.js
-```
+> **Do NOT pipe the payload in PowerShell.** This was wrong in an earlier
+> version of this doc and it produces **false passes**:
+>
+> ```powershell
+> # BROKEN - do not use
+> '{"tool_name":"Write","tool_input":{...}}' | node .claude\hooks\secret-scan.js
+> ```
+>
+> PS 5.1 prepends a UTF-8 BOM (`U+FEFF`) when piping to a native exe, so the
+> hook's `JSON.parse` throws. Both hooks `catch { process.exit(0) }` — they
+> **fail open** — so the BOM makes every case print nothing, which reads as
+> "allow". The two deny tests silently pass-as-allow and the two allow tests
+> are indistinguishable from a crashed hook. `$OutputEncoding` does not
+> suppress it (verified 2026-08-01).
+>
+> Write a BOM-less file and redirect stdin instead:
+>
+> ```powershell
+> $f = "$env:TEMP\payload.json"
+> [System.IO.File]::WriteAllText($f, $json, (New-Object System.Text.UTF8Encoding $false))
+> cmd /c "node ""C:\dev\ai\.claude\hooks\secret-scan.js"" < ""$f"""
+> ```
+>
+> Working harness kept at `scratchpad\gate-tests.ps1`; it runs all four and
+> prints a tally. Claude Code itself feeds the hooks clean UTF-8, so this trap
+> only ever affected the manual test, never the live gate.
 
 Deny prints a JSON `permissionDecision` block; allow prints nothing. Both hooks
-exit 0 either way, so **check the output, not the exit code.**
+exit 0 either way, so **check the output, not the exit code.** Always confirm at
+least one deny case actually denies — that is what proves the harness is
+delivering stdin at all.
 
-**Status 2026-08-01: 4/4 pass.** The publish gate also blocked a real tool call
-during testing — the test harness itself named `queue`, and the hook killed it
-before it ran. It is genuinely armed, not just correct in isolation.
+**Status 2026-08-01: 4/4 pass**, re-verified with the redirect harness above.
+The publish gate also blocked a real tool call during testing — the test command
+itself named `queue`, and the hook killed it before it ran. It is genuinely
+armed, not just correct in isolation.
 
 ---
 
