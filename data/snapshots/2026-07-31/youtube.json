@@ -1,0 +1,120 @@
+{
+  "platform": "youtube",
+  "pulled_at": "2026-07-31T23:07:49.0480811-04:00",
+  "source": "YouTube Data API v3 (public stats only)",
+  "missing": [
+    "retention_pct",
+    "avg_view_duration_s",
+    "impressions_ctr_pct"
+  ],
+  "channel": {
+    "channel_id": "UCcQsA-i3zAWroB4pRnCU1uA",
+    "title": "The MC",
+    "handle": "@project.mc.racing",
+    "published": "2015-06-20T16:34:55Z",
+    "subscribers": 25,
+    "total_views": 6219,
+    "video_count": 5,
+    "subscribers_are_rounded": false
+  },
+  "videos": [
+    {
+      "video_id": "rgWP5hACgB4",
+      "title": "Subframe done now we move on to drivetrain ￼#mechanic #viral #car",
+      "published": "2026-07-30T20:07:51Z",
+      "duration_sec": 23,
+      "is_short": true,
+      "views": 1242,
+      "likes": 10,
+      "comments": 1,
+      "engagement_rate": 0.886,
+      "retention_pct": null,
+      "avg_view_duration_s": null,
+      "impressions_ctr_pct": null
+    },
+    {
+      "video_id": "OSGr3Yd-fJY",
+      "title": "The start of the new journey🤪🤪 ￼#bike #bikelover #s1000rr #bmws1000rr #motorcycle #bmw #shorts",
+      "published": "2024-08-24T14:59:44Z",
+      "duration_sec": 20,
+      "is_short": true,
+      "views": 1645,
+      "likes": 32,
+      "comments": 0,
+      "engagement_rate": 1.945,
+      "retention_pct": null,
+      "avg_view_duration_s": null,
+      "impressions_ctr_pct": null
+    },
+    {
+      "video_id": "RfzxdeMabB4",
+      "title": "M3!!! 🤣🤣 #bmw #bmwm3 #automobile #car #drift #carlover #viral #youtube #youtubeshorts #tiktok",
+      "published": "2023-07-02T02:42:17Z",
+      "duration_sec": 11,
+      "is_short": true,
+      "views": 1288,
+      "likes": 20,
+      "comments": 0,
+      "engagement_rate": 1.553,
+      "retention_pct": null,
+      "avg_view_duration_s": null,
+      "impressions_ctr_pct": null
+    },
+    {
+      "video_id": "DVY7CaQzc3I",
+      "title": "🤫🤫🤫——- #bmw #automobile #bmwm3 #car #drift #carlover #cars #viral #youtube #edit #youtubeshorts",
+      "published": "2023-06-28T05:00:41Z",
+      "duration_sec": 20,
+      "is_short": true,
+      "views": 830,
+      "likes": 20,
+      "comments": 1,
+      "engagement_rate": 2.53,
+      "retention_pct": null,
+      "avg_view_duration_s": null,
+      "impressions_ctr_pct": null
+    },
+    {
+      "video_id": "gg3j0hm2j70",
+      "title": "Ifykyk #bmw #bmwm3 #car #carlover #cars #e36 #viral #youtube #youtubeshorts #viralvideo #tiktok",
+      "published": "2023-06-25T17:22:18Z",
+      "duration_sec": 15,
+      "is_short": true,
+      "views": 1255,
+      "likes": 12,
+      "comments": 0,
+      "engagement_rate": 0.956,
+      "retention_pct": null,
+      "avg_view_duration_s": null,
+      "impressions_ctr_pct": null
+    },
+    {
+      "video_id": "LMmiXX95leU",
+      "title": "spooky boys",
+      "published": "2021-11-12T22:00:25Z",
+      "duration_sec": 0,
+      "is_short": false,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "engagement_rate": 0,
+      "retention_pct": null,
+      "avg_view_duration_s": null,
+      "impressions_ctr_pct": null
+    },
+    {
+      "video_id": "Bjf3odfye8U",
+      "title": "ANGELGAMER NYC Live Stream",
+      "published": "2018-02-25T04:11:41Z",
+      "duration_sec": 0,
+      "is_short": false,
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "engagement_rate": 0,
+      "retention_pct": null,
+      "avg_view_duration_s": null,
+      "impressions_ctr_pct": null
+    }
+  ]
+}

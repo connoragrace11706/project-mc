@@ -1,0 +1,44 @@
+{
+  "_comment": "Handles and IDs only. Tokens and keys live in .env, never here.",
+  "updated": "2026-07-31",
+  "accounts": {
+    "youtube": {
+      "handle": "@project.mc.racing",
+      "channel_id": "UCcQsA-i3zAWroB4pRnCU1uA",
+      "display_name": "The MC",
+      "created": "2015-06-20",
+      "_note": "Resolved 2026-07-31 via forHandle. Display name 'The MC' does not match the handle - see ROADMAP open items.",
+      "monetized": false,
+      "ingest": "ingest/Get-YouTubeStats.ps1",
+      "active": true
+    },
+    "instagram": {
+      "handle": "project.mc.racing",
+      "ig_user_id": null,
+      "account_type": "creator",
+      "_todo": "Need IG_USER_ID + IG_ACCESS_TOKEN in .env (see SETUP.md step 2)",
+      "ingest": "ingest/Get-InstagramStats.ps1",
+      "active": true
+    },
+    "tiktok": {
+      "handle": "project.mc.racing",
+      "_method": "manual",
+      "_note": "CSV export: TikTok web dashboard > Analytics > Download data. Drop in data/manual/. Direct posting needs a 2-4 week app audit - not worth it solo, upload manually.",
+      "active": true
+    },
+    "x": {
+      "handle": null,
+      "_todo": "No X account mentioned in the 2026-07-31 interview. Claim @project.mc.racing there before someone else does, even if unused.",
+      "_method": "manual",
+      "_note": "Free API tier can post but cannot read post metrics.",
+      "active": false
+    },
+    "_g_photography": {
+      "_note": "G's spin-off photography business. Instagram-first, then Pinterest. YouTube is a distant third for this audience. Separate playbook from the car channel.",
+      "instagram": null,
+      "pinterest": null,
+      "youtube": null,
+      "active": false
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Edit",
+      "Write",
+      "WebSearch",
+      "WebFetch",
+
+      "Bash(git status*)",
+      "Bash(git log*)",
+      "Bash(git diff*)",
+      "Bash(git show*)",
+      "Bash(git branch*)",
+      "Bash(ls*)",
+      "Bash(cat*)",
+      "Bash(head*)",
+      "Bash(tail*)",
+      "Bash(wc*)",
+      "Bash(mkdir*)",
+      "Bash(ffprobe*)",
+      "Bash(ffmpeg*)",
+      "Bash(yt-dlp*)",
+      "Bash(node --version)",
+      "Bash(npm ls*)",
+      "Bash(python --version)",
+      "Bash(pip list*)",
+
+      "PowerShell(git status*)",
+      "PowerShell(git log*)",
+      "PowerShell(git diff*)",
+      "PowerShell(Get-Content*)",
+      "PowerShell(Get-ChildItem*)",
+      "PowerShell(Test-Path*)",
+      "PowerShell(Get-Command*)",
+      "PowerShell(Get-CimInstance*)",
+      "PowerShell(Get-PSDrive*)",
+      "PowerShell(winget search*)",
+      "PowerShell(winget list*)",
+      "PowerShell(ffprobe*)",
+      "PowerShell(ffmpeg*)",
+      "PowerShell(higgs *)"
+    ],
+
+    "deny": [
+      "Read(.env)",
+      "Read(./.env)",
+      "Read(**/.env)",
+      "Bash(rm -rf /*)",
+      "Bash(git push --force*)",
+      "PowerShell(Remove-Item -Recurse -Force*)"
+    ]
+  },
+
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/secret-scan.js\"",
+            "timeout": 10,
+            "statusMessage": "Scanning for credentials..."
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/publish-gate.js\"",
+            "timeout": 10,
+            "statusMessage": "Checking the approval gate..."
+          }
+        ]
+      }
+    ]
+  }
+}

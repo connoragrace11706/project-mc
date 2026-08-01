@@ -1,0 +1,21 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/skills/content-scripting/scripts/platform_check.py\""
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(python3 .claude/skills/content-scripting/scripts/*)",
+      "Bash(python3 \"$CLAUDE_PROJECT_DIR/.claude/skills/content-scripting/scripts/\"*)"
+    ]
+  }
+}

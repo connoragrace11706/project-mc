@@ -1,0 +1,638 @@
+{
+  "platform": "tiktok",
+  "pulled_at": "2026-07-31T23:31:49.6229488-04:00",
+  "source": "TikTok Studio CSV export (tiktok-2026-07-31)",
+  "missing": [
+    "followers",
+    "watch_time",
+    "completion_rate",
+    "traffic_source"
+  ],
+  "account": {
+    "handle": "project.mc.racing",
+    "followers": null
+  },
+  "totals": {
+    "videos_in_export": 10,
+    "total_views": 41319.0,
+    "median_views": 1927,
+    "best_views": 24344.0,
+    "days_measured": 60,
+    "days_with_views": 36,
+    "days_under_5_views": 48
+  },
+  "videos": [
+    {
+      "title": "I am going broke for this car 🥲 #car #viral  #meme  #bmw",
+      "url": "https://www.tiktok.com/@project.mc.racing/video/7653266112234130718",
+      "post_date": "June 19",
+      "views": 1006,
+      "likes": 56,
+      "comments": 1,
+      "shares": 2,
+      "hashtag_count": 4,
+      "like_rate_pct": 5.57,
+      "engagement_rate_pct": 5.86,
+      "subject": null
+    },
+    {
+      "title": "Shout out to Apex engineered for making a rear suspension kit that’s as straightforward as OEM #car #viral #CapCut",
+      "url": "https://www.tiktok.com/@project.mc.racing/video/7668414176439667999",
+      "post_date": "July 30",
+      "views": 750,
+      "likes": 44,
+      "comments": 1,
+      "shares": 0,
+      "hashtag_count": 3,
+      "like_rate_pct": 5.87,
+      "engagement_rate_pct": 6.0,
+      "subject": null
+    },
+    {
+      "title": "The First season was just the beginning 🤡 #bmw #s1000rr #viralvideo #FunkNoCapCut #CapCut",
+      "url": "https://www.tiktok.com/@project.mc.racing/video/7470290600575782187",
+      "post_date": "February 11",
+      "views": 24344,
+      "likes": 1512,
+      "comments": 5,
+      "shares": 3,
+      "hashtag_count": 5,
+      "like_rate_pct": 6.21,
+      "engagement_rate_pct": 6.24,
+      "subject": null
+    },
+    {
+      "title": "The pain of hart brake is not a joke most men have no one to talk to. Only a throtle to beet on nothing elce        ————————————————Shot in mexico by a trained professional dont try at home __________________________________#motorcycle #viral #fyp #hartbroken #mentalhealth #mentalhealthmatters #fyp #edit #foryou",
+      "url": "https://www.tiktok.com/@project.mc.racing/video/7394883024837430570",
+      "post_date": "July 23",
+      "views": 4451,
+      "likes": 1082,
+      "comments": 1,
+      "shares": 4,
+      "hashtag_count": 9,
+      "like_rate_pct": 24.31,
+      "engagement_rate_pct": 24.42,
+      "subject": null
+    },
+    {
+      "title": "Pretty in pink😘  1of1 s1000rr #bmw #viral #trend #funk #motorcycle #CapCut",
+      "url": "https://www.tiktok.com/@project.mc.racing/video/7475866582145584430",
+      "post_date": "February 26",
+      "views": 4128,
+      "likes": 840,
+      "comments": 1,
+      "shares": 5,
+      "hashtag_count": 6,
+      "like_rate_pct": 20.35,
+      "engagement_rate_pct": 20.49,
+      "subject": null
+    },
+    {
+      "title": "Sorry mom called 📲 #bmw #viral #motorcycle #s1000rr #bmwlife #cars #love #bikelife",
+      "url": "https://www.tiktok.com/@project.mc.racing/video/7477746957407178030",
+      "post_date": "March 3",
+      "views": 1048,
+      "likes": 104,
+      "comments": 0,
+      "shares": 5,
+      "hashtag_count": 8,
+      "like_rate_pct": 9.92,
+      "engagement_rate_pct": 10.4,
+      "subject": null
+    },
+    {
+      "title": "Had to join the s1k family thanks for all the love 🙏 more content coming soon👹 #s1000rr #bmw #bmwmotorsport #motorcycle #fypage #edit #s1krr #bike",
+      "url": "https://www.tiktok.com/@project.mc.racing/video/7403629986445266218",
+      "post_date": "August 16",
+      "views": 1927,
+      "likes": 176,
+      "comments": 0,
+      "shares": 5,
+      "hashtag_count": 8,
+      "like_rate_pct": 9.13,
+      "engagement_rate_pct": 9.39,
+      "subject": null
+    },
+    {
+      "title": "Perfict loop? #FunkNoCapCut #Funk #Biscoitocut #rosaquelindaeres #FunkNoCapCut #Funk #Biscoitocut #motorcycle #s1000r #bmw",
+      "url": "https://www.tiktok.com/@project.mc.racing/video/7404837716908625194",
+      "post_date": "August 19",
+      "views": 901,
+      "likes": 121,
+      "comments": 1,
+      "shares": 0,
+      "hashtag_count": 10,
+      "like_rate_pct": 13.43,
+      "engagement_rate_pct": 13.54,
+      "subject": null
+    },
+    {
+      "title": "I think she hates me                              #cars #fyp #viral #carsoftiktok #foryou #cars #car #carsofinstagram #carporn #bmw #auto #carlifestyle #s #carphotography #photography #supercars #ford #jdm #carswithoutlimits #automotive #mercedes #audi #porsche #ferrari #turbo #instacar #f #m #luxury #v #r #racing #supercar #instacars #toyota",
+      "url": "https://www.tiktok.com/@project.mc.racing/video/7339204409878170926",
+      "post_date": "February 24",
+      "views": 2027,
+      "likes": 24,
+      "comments": 0,
+      "shares": 0,
+      "hashtag_count": 35,
+      "like_rate_pct": 1.18,
+      "engagement_rate_pct": 1.18,
+      "subject": null
+    },
+    {
+      "title": "Best financial decision of 2024 fs😭 ____________________________________ shot by trained professionals in mexico and enhanced by ai __________________________________do not attempt any stunts done in this video ##viral##motorcycle##fyp##edit##foryou##foryoupage##parati##mentalhealth##trending##hartbroken",
+      "url": "https://www.tiktok.com/@project.mc.racing/video/7396508736908496171",
+      "post_date": "July 27",
+      "views": 737,
+      "likes": 81,
+      "comments": 3,
+      "shares": 2,
+      "hashtag_count": 10,
+      "like_rate_pct": 10.99,
+      "engagement_rate_pct": 11.67,
+      "subject": null
+    }
+  ],
+  "daily": [
+    {
+      "date": "June 1",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 2",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 3",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 4",
+      "views": 1,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 5",
+      "views": 1,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 6",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 7",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 8",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 9",
+      "views": 1,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 10",
+      "views": 1,
+      "profile_views": 2,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 11",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 12",
+      "views": 2,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 13",
+      "views": 4,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 14",
+      "views": 3,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 15",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 16",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 17",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 18",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 19",
+      "views": 1,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 20",
+      "views": 719,
+      "profile_views": 6,
+      "likes": 31,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 21",
+      "views": 30,
+      "profile_views": 0,
+      "likes": 1,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 22",
+      "views": 51,
+      "profile_views": 2,
+      "likes": 6,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 23",
+      "views": 68,
+      "profile_views": 1,
+      "likes": 5,
+      "comments": 0,
+      "shares": 1
+    },
+    {
+      "date": "June 24",
+      "views": 39,
+      "profile_views": 0,
+      "likes": 5,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 25",
+      "views": 53,
+      "profile_views": 0,
+      "likes": 11,
+      "comments": 0,
+      "shares": 1
+    },
+    {
+      "date": "June 26",
+      "views": 63,
+      "profile_views": 0,
+      "likes": 6,
+      "comments": 1,
+      "shares": 0
+    },
+    {
+      "date": "June 27",
+      "views": 12,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 28",
+      "views": 2,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 29",
+      "views": 9,
+      "profile_views": 1,
+      "likes": 2,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "June 30",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 1",
+      "views": 1,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 2",
+      "views": 1,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 3",
+      "views": 2,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 4",
+      "views": 3,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 5",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 6",
+      "views": 6,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 7",
+      "views": 1,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 8",
+      "views": 1,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 9",
+      "views": 1,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 10",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 11",
+      "views": 1,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 12",
+      "views": 1,
+      "profile_views": 1,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 13",
+      "views": 1,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 14",
+      "views": 1,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 15",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 16",
+      "views": 1,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 17",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 18",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 19",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 20",
+      "views": 1,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 21",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 22",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 23",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 24",
+      "views": 1,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 25",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 26",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 27",
+      "views": 1,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 28",
+      "views": 0,
+      "profile_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 29",
+      "views": 38,
+      "profile_views": 0,
+      "likes": 1,
+      "comments": 0,
+      "shares": 0
+    },
+    {
+      "date": "July 30",
+      "views": 715,
+      "profile_views": 7,
+      "likes": 37,
+      "comments": 0,
+      "shares": 0
+    }
+  ]
+}

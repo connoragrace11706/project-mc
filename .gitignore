@@ -1,0 +1,17 @@
+.env
+*.token
+*.secret
+api key/
+*api*key*.txt
+
+# Per-machine Claude Code overrides. The laptop and the desktop are
+# deliberately configured differently - don't sync these.
+**/settings.local.json
+data/snapshots/**/raw/
+footage/
+*.mp4
+*.mov
+*.CR2
+*.ARW
+Thumbs.db
+desktop.ini
