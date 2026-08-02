@@ -126,6 +126,11 @@ thing they share.**
 - `.env` — API keys, hand-typed once on each box. This is why the repo is safe.
 - Footage — `.gitignore` blocks `.mp4/.mov/.CR2/.ARW`. **Git will never move
   video.** Off-site backup is a separate job (rclone → Backblaze B2).
+
+  **The footage root on the desktop is `C:\footage\raw`**, one subfolder per
+  card or phone. Settled 2026-08-02 — the desktop has a single volume, so the
+  `D:\` path older docs used never existed. Nothing in the repo points at
+  footage by absolute path; scripts take it as a parameter.
 - `settings.local.json` — the two machines are configured differently on purpose.
 
 ## Current state

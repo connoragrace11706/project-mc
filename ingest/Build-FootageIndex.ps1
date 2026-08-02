@@ -12,10 +12,10 @@
   Read-only. Never renames, moves, or deletes anything.
 
 .EXAMPLE
-  .\Build-FootageIndex.ps1 -FootageRoot D:\footage\raw
+  .\Build-FootageIndex.ps1 -FootageRoot C:\footage\raw
 
 .EXAMPLE
-  .\Build-FootageIndex.ps1 -FootageRoot D:\footage\raw -Quick
+  .\Build-FootageIndex.ps1 -FootageRoot C:\footage\raw -Quick
   Skips ffprobe. Seconds instead of minutes - use it to confirm the offload
   landed before committing to a full index.
 #>
