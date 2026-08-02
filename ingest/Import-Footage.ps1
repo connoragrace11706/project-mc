@@ -88,6 +88,11 @@ $SKIP_DIRS  = @('System Volume Information', '$RECYCLE.BIN', '.Trashes',
                 '.Spotlight-V100', '.fseventsd', 'FOUND.000')
 $SKIP_FILES = @('Thumbs.db', 'desktop.ini', '.DS_Store')
 
+# AppleDouble resource-fork stubs, left behind when a card has been in a Mac.
+# Always zero-byte companions to a real file - archiving them is pure noise.
+# Seen on the first real card, 2026-08-02.
+$SKIP_PATTERNS = @('._*')
+
 # --- preflight ---------------------------------------------------------------
 
 if (-not (Test-Path -LiteralPath $Source)) {
@@ -125,6 +130,7 @@ $all = @(Get-ChildItem -LiteralPath $srcRoot -Recurse -File -Force -ErrorAction 
              $keep = $true
              foreach ($d in $SKIP_DIRS)  { if ($_.FullName -like "*\$d\*") { $keep = $false } }
              foreach ($f in $SKIP_FILES) { if ($_.Name -eq $f)             { $keep = $false } }
+             foreach ($p in $SKIP_PATTERNS) { if ($_.Name -like $p)       { $keep = $false } }
              $keep
          })
 
